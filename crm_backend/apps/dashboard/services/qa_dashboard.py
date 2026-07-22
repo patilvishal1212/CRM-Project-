@@ -95,11 +95,7 @@ class QaDashboardService:
         # Campaign metrics for QA
         campaigns_qs = Campaign.objects.filter(leads__assigned_qa=user).distinct()
         active_campaigns = campaigns_qs.filter(status="active").count()
-        total_budget = float(
-            campaigns_qs.aggregate(
-                total_budget=Sum("budget")
-            )["total_budget"] or 0
-        )
+        total_budget = None
 
         return {
             "role": "qa",

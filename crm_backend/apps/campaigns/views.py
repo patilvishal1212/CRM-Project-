@@ -11,7 +11,7 @@ class CampaignListCreateAPIView(APIView):
 
     def get(self, request):
         campaigns = Campaign.objects.all().order_by('-created_at')
-        serializer = CampaignSerializer(campaigns, many=True)
+        serializer = CampaignSerializer(campaigns, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
@@ -20,7 +20,7 @@ class CampaignListCreateAPIView(APIView):
                 {"error": "Only admin users can create campaigns."},
                 status=status.HTTP_403_FORBIDDEN
             )
-        serializer = CampaignSerializer(data=request.data)
+        serializer = CampaignSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -43,7 +43,7 @@ class CampaignDetailAPIView(APIView):
                 {"error": "Campaign not found."},
                 status=status.HTTP_404_NOT_FOUND
             )
-        serializer = CampaignSerializer(campaign)
+        serializer = CampaignSerializer(campaign, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk):
@@ -58,7 +58,7 @@ class CampaignDetailAPIView(APIView):
                 {"error": "Campaign not found."},
                 status=status.HTTP_404_NOT_FOUND
             )
-        serializer = CampaignSerializer(campaign, data=request.data, partial=True)
+        serializer = CampaignSerializer(campaign, data=request.data, partial=True, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

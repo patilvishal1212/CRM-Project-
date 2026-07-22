@@ -27,10 +27,9 @@ class CampaignService:
                         assigned_qa=user
                     )
 
-            campaigns_data.append({
+            camp_data = {
                 "id": campaign.id,
                 "name": campaign.name,
-                "budget": float(campaign.budget),
                 "status": campaign.status,
                 "leads_count": camp_leads.count(),
                 "qualified_count": camp_leads.filter(
@@ -40,6 +39,10 @@ class CampaignService:
                     campaign.start_date.isoformat(),
                 "end_date":
                     campaign.end_date.isoformat(),
-            })
+            }
+            if not user or user.role == "admin":
+                camp_data["budget"] = float(campaign.budget)
+
+            campaigns_data.append(camp_data)
 
         return campaigns_data

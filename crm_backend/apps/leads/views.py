@@ -98,3 +98,52 @@ class LeadQAReviewAPIView(APIView):
             },
             status=status.HTTP_200_OK
         )
+
+
+import csv
+from django.http import HttpResponse
+
+class LeadExportCSVAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+
+        if user.role == 'admin':
+            leads = Lead.objects.all().order_by('-created_at')
+        elif user.role == 'qa':
+            leads = Lead.objects.filter(assigned_qa=user).order_by('-created_at')
+        else:
+            leads = Lead.objects.filter(assigned_to=user).order_by('-created_at')
+
+        response = HttpResponse(content_type='text/csv; charset=utf-8')
+        response['Content-Disposition'] = 'attachment; filename="leads_export.csv"'
+
+        writer = csv.writer(response)
+        writer.writerow([
+            "Campaign Name", "First Name", "Last Name", "Job Title", "Email",
+            "Prospect LinkedIn Link", "Contact Number", "Direct Number",
+            "Company Name", "Industry", "Company LinkedIn Link", "Company Size",
+            "HQ Address", "QA Status", "Date Created"
+        ])
+
+        for lead in leads:
+            writer.writerow([
+                lead.campaign.name if lead.campaign else "N/A",
+                lead.first_name,
+                lead.last_name,
+                lead.job_title,
+                lead.email,
+                lead.prospect_linkedin,
+                lead.contact_number,
+                lead.direct_number or "",
+                lead.company_name or "",
+                lead.industry,
+                lead.company_linkedin,
+                lead.company_size,
+                lead.address or "",
+                lead.qa_status,
+                lead.created_at.strftime('%Y-%m-%d %H:%M:%S') if lead.created_at else ""
+            ])
+
+        return response

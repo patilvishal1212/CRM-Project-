@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import myIcon from '../assets/vite.png';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -40,16 +41,18 @@ const Login = () => {
       {/* Main glass box card */}
       <div className="w-full max-w-md p-8 bg-slate-900/40 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl relative z-10">
         <div className="flex flex-col items-center mb-8">
-          <div className="flex items-center justify-center w-14 h-14 mb-4 rounded-2xl bg-gradient-to-tr from-indigo-500 to-violet-500 shadow-xl shadow-indigo-500/20">
-            <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
+          <div className="flex items-center justify-center w-14 h-14 mb-4 ">
+            <img
+              src={myIcon}
+              alt="Icon"
+              className="w-15 h-15 object-contain"
+            />
           </div>
           <h1 className="text-3xl font-extrabold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
-            Welcome Back
+            Welcome
           </h1>
           <p className="mt-1.5 text-sm text-slate-400">
-            Access your sales workspace portal
+            Access your company workspace portal
           </p>
         </div>
 
@@ -126,9 +129,9 @@ const Login = () => {
             For demo roles, try:
           </p>
           <div className="flex flex-col gap-1 mt-2.5 text-xs text-slate-400 font-mono">
-            <span>admin@tgs.com (Pass: admin123)</span>
-            <span>employee@tgs.com (Pass: emp123)</span>
-            <span>qa@tgs.com (Pass: qa123)</span>
+            <span>admin@proedgemedia.com (Pass: admin123)</span>
+            <span>employee@proedgemedia.com (Pass: emp123)</span>
+            <span>qa@proedgemedia.com (Pass: qa123)</span>
           </div>
         </div>
       </div>

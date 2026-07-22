@@ -179,7 +179,15 @@ const Leads = () => {
       "Email",
       "Job Title",
       "Company",
+      "Prospect LinkedIn Link",
+      "Contact Number",
+      "Direct Number",
+      "Industry",
+      "Company LinkedIn",
+      "Company Size",
+      "Address",
       "QA Status",
+      "Comments",
       "Date Created\n",
     ];
     const rows = filteredLeads.map((l) => [
@@ -188,7 +196,15 @@ const Leads = () => {
       l.email,
       l.job_title,
       l.company_name || "N/A",
+      l.prospect_linkedin,
+      l.contact_number,
+      l.direct_number,
+      l.industry,
+      l.company_linkedin,
+      l.company_size,
+      l.address,
       l.qa_status,
+      l.comments,
       new Date(l.created_at).toLocaleDateString() + "\n",
     ]);
 

@@ -124,7 +124,7 @@ class LeadExportCSVAPIView(APIView):
             "Campaign Name", "First Name", "Last Name", "Job Title", "Email",
             "Prospect LinkedIn Link", "Contact Number", "Direct Number",
             "Company Name", "Industry", "Company LinkedIn Link", "Company Size",
-            "HQ Address", "QA Status", "Date Created"
+            "HQ Address", "City", "State", "Zip Code", "Country", "QA Status", "Date Created"
         ])
 
         for lead in leads:
@@ -142,6 +142,10 @@ class LeadExportCSVAPIView(APIView):
                 lead.company_linkedin,
                 lead.company_size,
                 lead.address or "",
+                lead.city or "",
+                lead.state or "",
+                lead.zip_code or "",
+                lead.country or "",
                 lead.qa_status,
                 lead.created_at.strftime('%Y-%m-%d %H:%M:%S') if lead.created_at else ""
             ])

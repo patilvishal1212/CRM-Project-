@@ -24,17 +24,21 @@ class Lead(models.Model):
 
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    job_title = models.CharField(max_length=255)
+    job_title = models.CharField(max_length=255, blank=True, null=True)
     email = models.EmailField()
-    prospect_linkedin = models.URLField(max_length=500)
-    contact_number = models.CharField(max_length=20)
+    prospect_linkedin = models.URLField(max_length=500, blank=True, null=True)
+    contact_number = models.CharField(max_length=20, blank=True, null=True)
     direct_number = models.CharField(max_length=20, blank=True, null=True)
 
-    industry = models.CharField(max_length=255)
+    industry = models.CharField(max_length=255, blank=True, null=True)
     company_name = models.CharField(max_length=255, blank=True, null=True)
-    company_linkedin = models.URLField(max_length=500)
-    company_size = models.CharField(max_length=255)
+    company_linkedin = models.URLField(max_length=500, blank=True, null=True)
+    company_size = models.CharField(max_length=255, blank=True, null=True)
     address = models.CharField(blank=True, null=True)
+    city = models.CharField(max_length=255, blank=True, null=True)
+    state = models.CharField(max_length=255, blank=True, null=True)
+    zip_code = models.CharField(max_length=20, blank=True, null=True)
+    country = models.CharField(max_length=255, blank=True, null=True)
 
     call_recording = models.FileField(
         upload_to='call_recordings/',

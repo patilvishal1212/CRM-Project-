@@ -36,6 +36,10 @@ const Leads = () => {
     company_linkedin: "",
     company_size: "",
     address: "",
+    city: "",
+    state: "",
+    zip_code: "",
+    country: "",
     comments: "",
   });
   const [audioFile, setAudioFile] = useState(null);
@@ -126,6 +130,10 @@ const Leads = () => {
         company_linkedin: "",
         company_size: "",
         address: "",
+        city: "",
+        state: "",
+        zip_code: "",
+        country: "",
         comments: "",
       });
       setAudioFile(null);
@@ -186,6 +194,10 @@ const Leads = () => {
       "Company LinkedIn",
       "Company Size",
       "Address",
+      "City",
+      "State",
+      "Zip Code",
+      "Country",
       "QA Status",
       "Comments",
       "Date Created\n",
@@ -203,6 +215,10 @@ const Leads = () => {
       l.company_linkedin,
       l.company_size,
       l.address,
+      l.city || "N/A",
+      l.state || "N/A",
+      l.zip_code || "N/A",
+      l.country || "N/A", 
       l.qa_status,
       l.comments,
       new Date(l.created_at).toLocaleDateString() + "\n",
@@ -570,12 +586,11 @@ const Leads = () => {
                 {/* Job Title & Email */}
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Job Title *
+                    Job Title 
                   </label>
                   <input
                     type="text"
                     name="job_title"
-                    required
                     value={formData.job_title}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-slate-700 dark:text-slate-350"
@@ -598,12 +613,11 @@ const Leads = () => {
                 {/* LinkedIn and Phones */}
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Prospect LinkedIn Link *
+                    Prospect LinkedIn Link 
                   </label>
                   <input
                     type="url"
                     name="prospect_linkedin"
-                    required
                     placeholder="https://linkedin.com/in/..."
                     value={formData.prospect_linkedin}
                     onChange={handleInputChange}
@@ -612,12 +626,11 @@ const Leads = () => {
                 </div>
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Contact Number *
+                    Contact Number 
                   </label>
                   <input
                     type="text"
                     name="contact_number"
-                    required
                     value={formData.contact_number}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-slate-700 dark:text-slate-350"
@@ -639,12 +652,11 @@ const Leads = () => {
                 </div>
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Company Name *
+                    Company Name 
                   </label>
                   <input
                     type="text"
                     name="company_name"
-                    required
                     value={formData.company_name}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-slate-700 dark:text-slate-350"
@@ -654,12 +666,11 @@ const Leads = () => {
                 {/* Industry & Company LinkedIn */}
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Industry *
+                    Industry 
                   </label>
                   <input
                     type="text"
                     name="industry"
-                    required
                     value={formData.industry}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-slate-700 dark:text-slate-350"
@@ -667,12 +678,11 @@ const Leads = () => {
                 </div>
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Company LinkedIn Link *
+                    Company LinkedIn Link 
                   </label>
                   <input
                     type="url"
                     name="company_linkedin"
-                    required
                     placeholder="https://linkedin.com/company/..."
                     value={formData.company_linkedin}
                     onChange={handleInputChange}
@@ -683,12 +693,11 @@ const Leads = () => {
                 {/* Company size & address */}
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                    Company Size *
+                    Company Size 
                   </label>
                   <input
                     type="text"
                     name="company_size"
-                    required
                     placeholder="e.g. 50-200 employees"
                     value={formData.company_size}
                     onChange={handleInputChange}
@@ -703,6 +712,54 @@ const Leads = () => {
                     type="text"
                     name="address"
                     value={formData.address}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-slate-700 dark:text-slate-350"
+                  />
+                </div>
+                  <div className="space-y-1">
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-slate-700 dark:text-slate-350"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    State
+                  </label>
+                  <input
+                    type="text"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-slate-700 dark:text-slate-350"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    Zip Code
+                  </label>
+                  <input
+                    type="text"
+                    name="zip_code"
+                    value={formData.zip_code}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-slate-700 dark:text-slate-350"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    Country
+                  </label>
+                  <input
+                    type="text"
+                    name="country"
+                    value={formData.country}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-slate-700 dark:text-slate-350"
                   />
@@ -940,6 +997,38 @@ const Leads = () => {
                     </span>
                     <p className="font-medium text-slate-700 dark:text-slate-350">
                       {activeLead.address || "N/A"}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase">
+                      City
+                    </span>
+                    <p className="font-medium text-slate-700 dark:text-slate-350">
+                      {activeLead.city || "N/A"}
+                    </p>
+                  </div>
+                                    <div>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase">
+                      State
+                    </span>
+                    <p className="font-medium text-slate-700 dark:text-slate-350">
+                      {activeLead.state || "N/A"}
+                    </p>
+                  </div>
+                                    <div>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase">
+                      Zip Code
+                    </span>
+                    <p className="font-medium text-slate-700 dark:text-slate-350">
+                      {activeLead.zip_code || "N/A"}
+                    </p>
+                  </div>
+                                    <div>
+                    <span className="text-[10px] text-slate-400 font-bold uppercase">
+                      Country
+                    </span>
+                    <p className="font-medium text-slate-700 dark:text-slate-350">
+                      {activeLead.country || "N/A"}
                     </p>
                   </div>
                 </div>

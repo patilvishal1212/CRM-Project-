@@ -21,6 +21,16 @@ const DashboardLayout = () => {
         return 'Marketing Campaigns';
       case '/qa-review':
         return 'QA Feedback Queue';
+      case '/payroll/hr':
+        return 'HR Payroll Matrix';
+      case '/payroll/admin-review':
+        return 'Payroll Approval Pipeline';
+      case '/daily-tracker':
+        return 'Daily Count Tracker';
+      case '/leave-management':
+        return 'Leave Management Portal';
+      case '/payroll/my-slips':
+        return 'My Salary Slips';
       default:
         return 'CRM Console';
     }

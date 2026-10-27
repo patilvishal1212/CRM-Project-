@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'apps.dashboard',
     'apps.campaigns',
     'apps.leads',
+    'apps.payroll',
+    'apps.daily_tracker',
+    'apps.leave_manager',
 ]
 
 MIDDLEWARE = [

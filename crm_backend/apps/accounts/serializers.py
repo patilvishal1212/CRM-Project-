@@ -77,7 +77,7 @@ class CreateEmployeeSerializer(serializers.ModelSerializer):
         return value
 
     def validate_role(self, value):
-        allowed = ['admin', 'employee', 'qa']
+        allowed = ['admin', 'employee', 'qa', 'hr']
         if value not in allowed:
             raise serializers.ValidationError(f"Role must be one of: {', '.join(allowed)}")
         return value

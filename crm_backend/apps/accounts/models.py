@@ -8,11 +8,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     ADMIN = 'admin'
     EMPLOYEE = 'employee'
     QA = 'qa'
+    HR = 'hr'
 
     ROLE_CHOICES = (
         (ADMIN, 'Admin'),
         (EMPLOYEE, 'Employee'),
         (QA, 'QA'),
+        (HR, 'Human Resources'),
     )
     
     full_name = models.CharField(max_length=255)

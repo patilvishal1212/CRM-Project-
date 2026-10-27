@@ -30,6 +30,15 @@ class IsQA(BasePermission):
             request.user.role == "qa"
         )
 
+class IsHR(BasePermission):
+    """Allow access only to HR role users."""
+    def has_permission(self, request, view):
+        return bool(
+            request.user and
+            request.user.is_authenticated and
+            request.user.role == "hr"
+        )        
+
 
 class IsAdminOrQA(BasePermission):
     """Allow access to Admin or QA role users."""
@@ -37,8 +46,10 @@ class IsAdminOrQA(BasePermission):
         return bool(
             request.user and
             request.user.is_authenticated and
-            request.user.role in ["admin", "qa"]
+            request.user.role in ["admin", "qa", "hr"]
         )
+
+
 
 
 class IsAdminOrEmployee(BasePermission):
@@ -47,5 +58,5 @@ class IsAdminOrEmployee(BasePermission):
         return bool(
             request.user and
             request.user.is_authenticated and
-            request.user.role in ["admin", "employee"]
+            request.user.role in ["admin", "employee", "hr"]
         )

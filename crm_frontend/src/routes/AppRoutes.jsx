@@ -8,6 +8,13 @@ import Campaigns from '../pages/Campaigns';
 import QAReview from '../pages/QAReview';
 import Login from '../pages/Login';
 
+import HRDashboard from '../payroll/pages/HRDashboard';
+import AdminReview from '../payroll/pages/AdminReview';
+import EmployeePayslips from '../payroll/pages/EmployeePayslips';
+
+import DailyTrackerPortal from '../daily_tracker/pages/DailyTrackerPortal';
+import LeavePortal from '../leave_manager/pages/LeavePortal';
+
 // Protect routes requiring authentication
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -66,6 +73,47 @@ const AppRoutes = () => {
           element={
             <RoleGuard allowedRoles={['admin', 'qa']}>
               <QAReview />
+            </RoleGuard>
+          } 
+        />
+        {/* Payroll Routes */}
+        <Route 
+          path="payroll/hr" 
+          element={
+            <RoleGuard allowedRoles={['hr', 'admin']}>
+              <HRDashboard />
+            </RoleGuard>
+          } 
+        />
+        <Route 
+          path="payroll/admin-review" 
+          element={
+            <RoleGuard allowedRoles={['admin']}>
+              <AdminReview />
+            </RoleGuard>
+          } 
+        />
+        <Route 
+          path="daily-tracker" 
+          element={
+            <RoleGuard allowedRoles={['employee', 'admin', 'hr', 'qa']}>
+              <DailyTrackerPortal />
+            </RoleGuard>
+          } 
+        />
+        <Route 
+          path="leave-management" 
+          element={
+            <RoleGuard allowedRoles={['employee', 'admin', 'hr', 'qa']}>
+              <LeavePortal />
+            </RoleGuard>
+          } 
+        />
+        <Route 
+          path="payroll/my-slips" 
+          element={
+            <RoleGuard allowedRoles={['employee', 'admin', 'hr', 'qa']}>
+              <EmployeePayslips />
             </RoleGuard>
           } 
         />

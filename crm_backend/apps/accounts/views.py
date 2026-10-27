@@ -9,7 +9,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import User
 from .serializers import UserSerializer, EmployeeSerializer, CreateEmployeeSerializer, UpdateEmployeeSerializer
-from .permissions import IsAdmin
+from .permissions import IsAdmin, IsHR
 
 
 class LoginAPIView(APIView):
@@ -74,7 +74,7 @@ class EmployeeListAPIView(APIView):
     GET  /api/accounts/employees/
     POST /api/accounts/employees/
     """
-    permission_classes = [IsAuthenticated, IsAdmin]
+    permission_classes = [IsAuthenticated, IsAdmin | IsHR]
 
     def get(self, request):
         employees = User.objects.all().order_by('-created_at')

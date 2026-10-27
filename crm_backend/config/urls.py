@@ -42,6 +42,21 @@ urlpatterns = [
     path(
         'api/dashboard/',
         include('apps.dashboard.urls')
+    ),
+
+    path(
+        'api/payroll/',
+        include('apps.payroll.urls')
+    ),
+
+    path(
+        'api/daily-tracker/',
+        include('apps.daily_tracker.urls')
+    ),
+
+    path(
+        'api/leaves/',
+        include('apps.leave_manager.urls')
     )
 ]
 
